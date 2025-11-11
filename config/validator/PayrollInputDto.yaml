@@ -1,0 +1,26 @@
+App\Dto\PayrollInputDto:
+    properties:
+        month:
+            - NotBlank:
+                message: 'Month is required'
+            - Type:
+                type: integer
+                message: 'Month must be an integer'
+            - Range:
+                min: 1
+                max: 12
+                notInRangeMessage: 'Month must be between {{ min }} and {{ max }}'
+
+        year:
+            - NotBlank:
+                message: 'Year is required'
+            - Type:
+                type: integer
+                message: 'Year must be an integer'
+            - Range:
+                min: 2000
+                max: 2100
+                notInRangeMessage: 'Year must be between {{ min }} and {{ max }}'
+            - GreaterThanOrEqual:
+                value: 2000
+                message: 'Year must be {{ compared_value }} or greater'

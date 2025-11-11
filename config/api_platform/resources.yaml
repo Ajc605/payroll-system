@@ -1,0 +1,7 @@
+resources:
+    App\Dto\PayrollOutputDto:
+        operations:
+            ApiPlatform\Metadata\Post:
+                uriTemplate: /payrolls
+                input: App\Dto\PayrollInputDto
+                processor: App\StateProcessor\PayrollStateProcessor
