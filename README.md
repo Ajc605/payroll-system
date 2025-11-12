@@ -83,7 +83,10 @@ Visit **http://localhost:8000** in your browser to use the web interface:
 3. Click "Calculate Payday"
 4. View the calculated payday and payment day
 
-The frontend calls the API endpoint via JavaScript to display the results.
+    The frontend calls the API endpoint via JavaScript to display the results.
+
+    ![Alt landing page](./docs/screenshots/landingpage.png)
+    ![Alt results page](./docs/screenshots/resultspage.png)
 
 ## Running Tests
 

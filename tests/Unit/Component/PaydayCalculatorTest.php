@@ -81,7 +81,7 @@ final class PaydayCalculatorTest extends UnitTestCase
             5,
             2025,
             Carbon::create(2025, 5, 30),
-            Carbon::create(2025, 5, 26)
+            Carbon::create(2025, 5, 23)
         ];
         yield [
             6,
@@ -123,7 +123,7 @@ final class PaydayCalculatorTest extends UnitTestCase
             12,
             2025,
             Carbon::create(2025, 12, 30),
-            Carbon::create(2025, 12, 24)
+            Carbon::create(2025, 12, 22)
         ];
     }
 }

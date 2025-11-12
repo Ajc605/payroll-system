@@ -6,6 +6,7 @@ use App\Dto\PayrollOutputDto;
 use App\Dto\PayrollOutputDtoInterface;
 use App\Exceptions\PaydayCalculatorInvalidDataException;
 use Carbon\Carbon;
+use Cmixin\BusinessDay;
 
 final readonly class PaydayCalculator implements PaydayCalculatorInterface
 {
@@ -23,19 +24,20 @@ final readonly class PaydayCalculator implements PaydayCalculatorInterface
             throw new PaydayCalculatorInvalidDataException();
         }
 
+        BusinessDay::enable(Carbon::class);
+        Carbon::setHolidaysRegion('gb-national');
+
         $payday = Carbon::create($year, $month)
             ->endOfMonth()
             ->subDay();
 
-        if ($payday->dayOfWeek === Carbon::SATURDAY) {
-            $payday->subDay();
-        } elseif ($payday->dayOfWeek === Carbon::SUNDAY) {
-            $payday->subDays(2);
+        while (!$payday->isBusinessDay()) {
+            $payday = $payday->previousBusinessDay();
         }
 
         return PayrollOutputDto::create(
             $payday->startOfDay(),
-            $payday->copy()->subWeekdays(4)->startOfDay(),
+            $payday->copy()->subBusinessDays(4)->startOfDay(),
         );
     }
 }
